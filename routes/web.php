@@ -17,7 +17,7 @@ use App\Http\Controllers\CandidatController;
 |
 */
 
-Route::get('/',[HomeController::class, 'index'])->name("home");
+//Route::get('/',[HomeController::class, 'index'])->name("home");
 
 
 Route::resource('categorie', CategorieController::class);
@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/vote', [HomeController::class,'allCandidat'])->name("vote");
+Route::get('/', [HomeController::class,'allCandidat'])->name("vote");
 Route::post('/voter', [HomeController::class,'voter'])->name("store.vote");
 
 Route::post('/vote', [HomeController::class,'candidatByCategorie'])->name("candidatByCategorie");
