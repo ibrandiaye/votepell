@@ -72,6 +72,14 @@
 
                                         </select>
                                     </div>
+                                     <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label>Resume </label>
+                                                <textarea id="elm1" type="text" name="resume"   class="summernote form-control" >
+                                                    {{$candidat->resume }}
+                                                </textarea>
+                                            </div>
+                                        </div>
                                 </div>
 
                                 <br>

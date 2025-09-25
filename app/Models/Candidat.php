@@ -9,7 +9,7 @@ class Candidat extends Model
 {
     use HasFactory;
       protected $fillable = [
-         'nom', 'description', 'image', 'votes', 'categorie_id'
+         'nom', 'description', 'image', 'votes', 'categorie_id','resume'
     ];
       public function categorie()
     {

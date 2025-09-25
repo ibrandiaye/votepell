@@ -22,6 +22,7 @@
         <!-- Responsive datatable examples -->
         <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
         <link href=" {{ asset('assets/plugins/select2/select2.min.css') }} " rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
         @yield('css')
         <style>
         select option {
@@ -209,8 +210,12 @@
         <!-- App js -->
         <script src="{{ asset('assets/js/app.js') }}"></script>
         <script src=" {{ asset('assets/plugins/select2/select2.min.js') }} " type="text/javascript"></script>
+
+         <script src=" {{ asset('assets/plugins/tinymce/tinymce.min.js') }} " type="text/javascript"></script>
+          <script src=" {{ asset('assets/pages/editor.init.js') }} "></script>
         @yield('script')
                 <script src=" {{ asset('assets/pages/form-advanced.js') }} "></script>
+
 
     </body>
 </html>

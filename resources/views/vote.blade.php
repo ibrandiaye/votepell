@@ -227,29 +227,31 @@
         </div>
     </div>
         @if($showSocialPopup ?? false)
-        <!-- Modal -->
-        <div class="modal fade" id="socialPopup" tabindex="-1" aria-hidden="true">
+        <!-- Modal forcé -->
+        <div class="modal fade" id="socialPopup" tabindex="-1" aria-hidden="true"
+            data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center p-3">
             <div class="modal-header">
                 <h5 class="modal-title">🙏 Merci de votre visite</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
             </div>
             <div class="modal-body">
-                <p>Aimez nos pages avant de continuer :</p>
+                <p>Veuillez aimer au moins une de nos pages avant de continuer :</p>
                 <div class="d-flex justify-content-center gap-3">
-                <a href="https://facebook.com/tonpage" target="_blank" class="btn btn-primary">Facebook</a>
-                <a href="https://instagram.com/tonpage" target="_blank" class="btn btn-danger">Instagram</a>
-                <a href="https://twitter.com/tonpage" target="_blank" class="btn btn-dark">Twitter</a>
+                <a href="https://www.facebook.com/ecopop.enda" target="_blank" class="btn btn-primary social-btn">Facebook</a>
+                <a href="https://www.instagram.com/enda.ecopop/" target="_blank" class="btn btn-danger social-btn">Instagram</a>
+                <a href="https://x.com/endaECOPOP" target="_blank" class="btn btn-dark social-btn">Twitter</a>
                 </div>
+                <small class="text-muted d-block mt-3">Cliquez sur au moins un bouton pour débloquer le site.</small>
             </div>
             <div class="modal-footer">
-                <button id="btn-continue" type="button" class="btn btn-success" data-bs-dismiss="modal">Continuer</button>
+                <button id="btn-continue" type="button" class="btn btn-success" disabled>Continuer</button>
             </div>
             </div>
         </div>
         </div>
         @endif
+
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3 mt-5">
@@ -306,15 +308,31 @@ document.addEventListener("DOMContentLoaded", function() {
         let popup = new bootstrap.Modal(document.getElementById('socialPopup'));
         popup.show();
 
-        document.getElementById("btn-continue").addEventListener("click", function() {
-            fetch("{{ route('social.popup.seen') }}", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({})
+        let continueBtn = document.getElementById("btn-continue");
+        let clicked = false;
+
+        document.querySelectorAll(".social-btn").forEach(btn => {
+            btn.addEventListener("click", function() {
+                if (!clicked) {
+                    clicked = true;
+                    continueBtn.disabled = false; // bouton activé
+                }
             });
+        });
+
+        continueBtn.addEventListener("click", function() {
+            if (clicked) {
+                // Enregistre que l’utilisateur a déjà passé le popup
+                fetch("{{ route('social.popup.seen') }}", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({})
+                });
+                popup.hide();
+            }
         });
     @endif
 });

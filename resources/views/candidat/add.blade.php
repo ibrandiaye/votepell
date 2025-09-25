@@ -60,7 +60,7 @@
                                             <input type="text" name="description"  value="{{ old('description') }}" class="form-control"required>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                         <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>Image</label>
                                             <input type="file" name="photo"  value="{{ old('photo') }}" class="form-control" required>
@@ -76,6 +76,16 @@
 
                                         </select>
                                     </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label>Resume </label>
+                                                <textarea id="elm1" type="text" name="resume"   class="summernote form-control" >
+                                                    {{ old('resume') }}
+                                                </textarea>
+                                            </div>
+                                        </div>
+
+
                                 </div>
                                 <br>
                                 <div class="row float-right ">
@@ -91,7 +101,14 @@
 
 @endsection
 
+@section('script')
+<script>
+     $('.summernote').summernote({
+        airMode: true
+        });
+</script>
 
+@endsection
 {{-- @section('script')
 <script>
        url_app = '{{ config('app.url') }}';
