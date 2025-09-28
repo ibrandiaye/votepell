@@ -32,11 +32,12 @@
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         .candidate-img {
-            height: 200px;
-            object-fit: cover;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
+             height: 200px;              /* fixe une hauteur */
+            object-fit: cover;          /* recadrage */
+            object-position: top;       /* garde le haut, coupe en bas */
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+                    }
         .category-badge {
             position: absolute;
             top: 10px;
@@ -64,7 +65,7 @@
         <div class="header text-center">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="photo/ua.png" height="60">
+                    <img src="photo/union_africaine.png" height="90">
                 </div>
                  <div class="col-md-4">
                     <img src="photo/oidp.png" height="60">
