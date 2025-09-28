@@ -192,7 +192,7 @@
 
                                 <p class="card-text">{{ $candidat->description }}.</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-muted">Votes: {{ $candidat->votes }}</span>
+                                    {{-- <span class="text-muted">Votes: {{ $candidat->votes }}</span> --}}
                                     <form action="{{ route('store.vote') }}" method="POST">
                                         @csrf
                                         <input value="{{ $candidat->id }}" name="candidat_id" type="hidden">
