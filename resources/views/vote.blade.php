@@ -136,14 +136,14 @@
                                  echo $total;
                             @endphp
                         </p>
-                        <p>Temps restant: 2j 5h 30m</p>
+                        <p>Temps restant: 20j 5h 30m</p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-filter me-2"></i>Filtres</h5>
 
-                        <form method="POST" action="{{ route('candidatByCategorie') }}">
+                      {{--   <form method="POST" action="{{ route('candidatByCategorie') }}">
                             <div class="mb-3">
                                 <label for="categoryFilter" class="form-label">Catégorie</label>
                                 @csrf
@@ -156,7 +156,7 @@
                             </div>
                              <button type="submit" class="btn btn-primary w-100">Appliquer</button>
 
-                        </form>
+                        </form> --}}
 
                         <div class="mb-3">
                             <label for="searchFilter" class="form-label">Recherche</label>
