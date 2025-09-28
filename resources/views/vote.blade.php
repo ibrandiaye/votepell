@@ -239,20 +239,20 @@
             <div class="modal-body">
                 <p>Veuillez aimer au moins une de nos pages avant de continuer :</p>
                 <div class="d-flex justify-content-center gap-3">
-               <a href="https://www.facebook.com/afriqueOIDP" target="_blank" class="btn btn-primary social-btn">
-                    <i class="fab fa-facebook-f"></i>
-                    </a>
+                   {{--  <a href="https://www.facebook.com/afriqueOIDP" target="_blank" class="btn btn-primary social-btn">
+                        <i class="fab fa-facebook-f"></i>
+                    </a> --}}
                      <a href="https://www.linkedin.com/company/oidp-afrique" target="_blank" class="btn btn-info social-btn">
                     <i class="fab fa-linkedin-in"></i>
                     </a>
 
-                    <a href="https://www.instagram.com/oidp.afrique" target="_blank" class="btn btn-danger social-btn">
+                  {{--   <a href="https://www.instagram.com/oidp.afrique" target="_blank" class="btn btn-danger social-btn">
                     <i class="fab fa-instagram"></i>
                     </a>
 
                     <a href="https://x.com/OidpAfrique" target="_blank" class="btn btn-dark social-btn">
                     <i class="fab fa-twitter"></i>
-                    </a>
+                    </a> --}}
 
 
 
