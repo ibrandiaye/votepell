@@ -65,13 +65,13 @@
         <div class="header text-center">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="photo/union_africaine.png" height="90">
+                    <img src="  {{ asset('photo/union_africaine.png')}}" height="90">
                 </div>
                  <div class="col-md-4">
-                    <img src="photo/oidp.png" height="60">
+                    <img src="{{ asset('photo/oidp.png')}}" height="60">
                 </div>
                  <div class="col-md-4">
-                    <img src="photo/uc.png" height="60">
+                    <img src="{{ asset('photo/uc.png')}}" height="60">
                 </div>
             </div>
             <h1><i class="fas fa-vote-yea me-2"></i>Plateforme de Vote PELL</h1>

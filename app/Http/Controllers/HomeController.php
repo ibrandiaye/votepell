@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function __construct(CandidatRepository $candidatRepository,CategorieRepository $categorieRepository,
                                 VoteRepository $voteRepository)
     {
-        $this->middleware('auth')->except(['allCandidat','voter',"candidatByCategorie"]);
+        $this->middleware('auth')->except(['allCandidat','voter',"candidatByCategorie",'candidatByCategorieId']);
         $this->candidatRepository = $candidatRepository;
         $this->categorieRepository = $categorieRepository;
         $this->voteRepository  = $voteRepository;
@@ -105,5 +105,16 @@ class HomeController extends Controller
             }
         }
         return view('home',compact('nbCandidat','nbCategorie','nbVotes','categories','rts','categorie'));
+    }
+
+    public function candidatByCategorieId($id)
+    {
+        $categorie_id = $id;
+
+            $candidats = $this->candidatRepository->getByCategorie($id);
+
+
+        $categories = $this->categorieRepository->getAll();
+        return view('vote', compact("candidats","categories","categorie_id"));
     }
 }

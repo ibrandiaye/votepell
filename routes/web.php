@@ -40,3 +40,6 @@ Route::post('/social-popup-seen', function () {
     session(['social_popup_seen' => true]);
     return response()->json(['status' => 'ok']);
 })->name('social.popup.seen');
+
+Route::get('/candidat/categorie/{id}', [HomeController::class,'candidatByCategorieId'])->name("candidatByCategorieId ");
+
