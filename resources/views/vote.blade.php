@@ -159,8 +159,8 @@
                         </form> --}}
 
                         <div class="mb-3">
-                            <label for="searchFilter" class="form-label">Recherche</label>
-                            <input type="text" class="form-control" id="searchFilter" placeholder="Nom du candidat...">
+                            <label for="searchFilter" class="form-label">Recherche / Search  / Pesquisar </label>
+                            <input type="text" class="form-control" id="searchFilter" placeholder="">
                         </div>
                        {{--  <ul>
                              @foreach($categories as $key => $categorie)
@@ -197,7 +197,7 @@
                                         @csrf
                                         <input value="{{ $candidat->id }}" name="candidat_id" type="hidden">
                                         <input value="{{ $candidat->categorie->id }}" name="categorie_id" type="hidden">
-                                        <button class="btn btn-vote">Voter <i class="fas fa-check ms-1"></i></button>
+                                        <button class="btn btn-vote">Voter / Vote / Votar <i class="fas fa-check ms-1"></i></button>
 
                                     </form>
                                 </div>
