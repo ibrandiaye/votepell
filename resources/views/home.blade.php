@@ -188,18 +188,38 @@
 
                         <div class="card-body">
                              <br><h5 class="text-center">{{ $categorie }}</h5>
-                            <div  id="bar-chart" >
-                        </div>
+                          {{--   <div  id="bar-chart" >
+                        </div> --}}
+                        <div style="height:480px;">
+                         <canvas id="myChart"></canvas></div>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
+    {{-- <div class="row">
+        <div class="col-sm-12">
+            <div style="height:480px;">
+            <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div> --}}
 
 @endsection
 
 @section("script")
+<style>
+/* Taille texte axe X */
+#morrisChart text[text-anchor="middle"] {
+  font-size: 18px !important;
+}
+
+/* Taille texte axe Y */
+#morrisChart text[text-anchor="end"] {
+  font-size: 14px !important;
+}
+</style>
   <!--Morris Chart-->
     <script src="{{ asset('assets/plugins/morris/morris.min.js') }} "></script>
     <script src="{{ asset('assets/plugins/raphael/raphael-min.js') }} "></script>
@@ -207,7 +227,7 @@
     <script>
 
         // A $( document ).ready() block.
-$( document ).ready(function() {
+/*$( document ).ready(function() {
      const ctx = document.getElementById('myChart');
         let donne = [];
         let label = [];
@@ -223,8 +243,8 @@ $( document ).ready(function() {
         };
         @foreach ($rts as $rt )
             donne.push({{ $rt->votes }});
-            label.push('{{ $rt->nom }}');
-            morischart.push({a:{{ $rt->votes }}, b : '{{ $rt->nom }}  ({{ $rt->votes }} voix)'});
+            label.push("{{ $rt->nom }}");
+            morischart.push({a:{{ $rt->votes }}, b : "{{ $rt->nom }}  ({{ $rt->votes }} voix)"});
             coloR.push(dynamicColors());
         @endforeach
         //console.log(morischart);
@@ -245,7 +265,15 @@ $( document ).ready(function() {
             scales: {
                 y: {
                 beginAtZero: true
-                }
+                },
+            x: {
+            ticks: {
+                autoSkip: false,
+                maxRotation: 45, // incline les textes
+                minRotation: 45
+            }
+            }
+
             },
             plugins: {
             legend: {
@@ -303,6 +331,137 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Faire défiler jusqu'à la position originale de la carte
                 card.scrollIntoView({ behavior: 'smooth' });
             });
-        });
+        });*/
+        $(document).ready(function() {
+  // canvas context
+  const ctx = document.getElementById('myChart').getContext('2d');
+
+  // données
+  let donne = [];
+  let labelsArr = [];
+  let coloR = [];
+  let morischart = [];
+
+  var dynamicColors = function() {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return "rgba(" + r + "," + g + "," + b + ",1)";
+  };
+
+  @foreach ($rts as $rt)
+    // IMPORTANT : échappe les quotes possibles dans les noms
+    donne.push({{ $rt->votes }});
+    labelsArr.push("{!!  $rt->nom !!}");
+    morischart.push({a: {{ $rt->votes }}, b: "{!! $rt->nom !!} ({{ $rt->votes }} voix)"});
+    coloR.push(dynamicColors());
+  @endforeach
+
+  // split long labels into multiple lines (maxChars per line)
+  function wrapLabel(label, maxChars) {
+    if (!label) return label;
+    // si déjà court, renvoyer la chaîne (Chart acceptera string ou tableau)
+    if (label.length <= maxChars) return label;
+    const words = label.split(' ');
+    const lines = [];
+    let line = '';
+    words.forEach(function(word) {
+      if ((line + ' ' + word).trim().length <= maxChars) {
+        line = (line + ' ' + word).trim();
+      } else {
+        if (line) lines.push(line);
+        line = word;
+      }
+    });
+    if (line) lines.push(line);
+    // si aucune espace (mot très long), on coupe en morceaux
+    if (lines.length === 0) {
+      for (let i = 0; i < label.length; i += maxChars) {
+        lines.push(label.substr(i, maxChars));
+      }
+    }
+    return lines; // retourne un tableau => Chart.js affiche sur plusieurs lignes
+  }
+
+  const data = {
+    labels: labelsArr,
+    datasets: [{
+      label: 'Nombre de voix obtenues',
+      data: donne,
+      borderWidth: 1,
+      backgroundColor: coloR,
+      borderColor: coloR,
+    }]
+  };
+
+  const chartConfig = {
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false, // important pour respecter la hauteur du conteneur
+      layout: {
+        padding: {
+          bottom: 30 // espace pour les labels
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            font: {
+                size: 12  // taille du texte labels axe X
+              },
+            autoSkip: false,
+            maxRotation: 45,
+            minRotation: 0,
+            callback: function(value, index, ticks) {
+              // index correspond à la position du label dans labelsArr
+              return wrapLabel(labelsArr[index], 12); // change 12 selon besoin
+            }
+          }
+        },
+        y: {
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            title: function(items) {
+              // affiche le label complet dans le tooltip
+              return labelsArr[items[0].dataIndex];
+            }
+          }
+        },
+        legend: {
+          display: true,
+          position: 'top'
+        }
+      }
+    }
+  };
+
+  const myChart = new Chart(ctx, chartConfig);
+
+  // --- Morris (laissée comme avant) ---
+  var dataM = morischart,
+      config = {
+        data: morischart,
+        xkey: 'b',
+        ykeys: ['a'],
+        labels: ['Total voix'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        behaveLikeLine: true,
+        resize: true,
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors:['gray','red']
+  };
+  config.element = 'bar-chart';
+  Morris.Bar(config);
+
+});
+
 </script>
 @endsection
