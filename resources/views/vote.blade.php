@@ -262,7 +262,7 @@
                 <p>Por favor, curta pelo menos uma página antes de clicar em continuar.</p>
                 <div class="d-flex justify-content-center gap-3">
                     <a href="https://www.facebook.com/afriqueOIDP" target="_blank" class="btn btn-primary social-btn">
-                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-facebook-f"></i> Facebook
                     </a>
                      <a href="https://www.linkedin.com/company/oidp-afrique" target="_blank" class="btn btn-info social-btn">
                     <i class="fab fa-linkedin-in"></i> LinkedIn
