@@ -17,7 +17,7 @@ class VoteRepository extends RessourceRepository{
         ->join("candidats","votes.candidat_id","=","candidats.id")
         ->select("votes.*")
         ->where("votes.ip_adresse",$ip)
-        ->where("votes.candidat_id",$candidat_id)
+      //  ->where("votes.candidat_id",$candidat_id)
         ->where("candidats.categorie_id",$categorie_id)
         ->first();
 
