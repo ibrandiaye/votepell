@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
         x: {
           ticks: {
             font: {
-                size: 12  // taille du texte labels axe X
+                size: 14  // taille du texte labels axe X
               },
             autoSkip: false,
             maxRotation: 45,
