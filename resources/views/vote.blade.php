@@ -257,13 +257,13 @@
                 <h5 class="modal-title">🙏 Merci de votre visite</h5>
             </div>
             <div class="modal-body">
-                <p>Veuillez aimer la page LinkedIn avant de cliquer sur continuer </p>
-                <p>Please like the LinkedIn page before clicking continue</p>
-                <p>Por favor, curta a página do LinkedIn antes de clicar em continuar</p>
+                <p>Veuillez aimer au moins une page avant de cliquer sur continuer. </p>
+                <p>Please like at least one page before clicking continue</p>
+                <p>Por favor, curta pelo menos uma página antes de clicar em continuar.</p>
                 <div class="d-flex justify-content-center gap-3">
-                   {{--  <a href="https://www.facebook.com/afriqueOIDP" target="_blank" class="btn btn-primary social-btn">
+                    <a href="https://www.facebook.com/afriqueOIDP" target="_blank" class="btn btn-primary social-btn">
                         <i class="fab fa-facebook-f"></i>
-                    </a> --}}
+                    </a>
                      <a href="https://www.linkedin.com/company/oidp-afrique" target="_blank" class="btn btn-info social-btn">
                     <i class="fab fa-linkedin-in"></i> LinkedIn
                     </a>
@@ -279,9 +279,9 @@
 
 
                 </div>
-                <small class="text-muted d-block ">Cliquez sur le bouton LinkedIn pour débloquer le site.</small>
-                <small class="text-muted d-block">Click the LinkedIn button to unlock the site.</small>
-                <small class="text-muted d-block ">Clique no botão do LinkedIn para desbloquear o site.</small>
+                <small class="text-muted d-block ">Cliquez sur au moins un bouton pour débloquer le site.</small>
+                <small class="text-muted d-block">Click on at least one button to unlock the site.</small>
+                <small class="text-muted d-block ">Clique em pelo menos um botão para desbloquear o site.</small>
             </div>
             <div class="modal-footer">
                 <button id="btn-continue" type="button" class="btn btn-success" disabled>Continuer/continue/continuar</button>
