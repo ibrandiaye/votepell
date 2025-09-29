@@ -41,5 +41,8 @@ Route::post('/social-popup-seen', function () {
     return response()->json(['status' => 'ok']);
 })->name('social.popup.seen');
 
-Route::get('/candidat/categorie/{id}', [HomeController::class,'candidatByCategorieId'])->name("candidatByCategorieId ");
+Route::get('/candidat/categorie/{id}', [HomeController::class,'candidatByCategorieId'])->name("candidatByCategorieId");
 
+
+
+Route::get('/update/show/{id}', [CategorieController::class,'updateShow'])->name("updateShow");

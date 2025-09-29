@@ -104,4 +104,10 @@ class CategorieController extends Controller
         $this->categorieRepository->destroy($id);
         return redirect('categorie');
     }
+
+    public function updateShow($id)
+    {
+        $categorie = $this->categorieRepository->updateShow($id);
+        return redirect('categorie');
+    }
 }

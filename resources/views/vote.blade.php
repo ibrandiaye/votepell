@@ -136,7 +136,7 @@
                                  echo $total;
                             @endphp
                         </p>
-                        <p>Temps restant: 20j 5h 30m</p>
+                        {{-- <p>Temps restant: 20j 5h 30m</p> --}}
                     </div>
                 </div>
                 <div class="card">
@@ -180,6 +180,7 @@
                 <div class="row" id="candidatesList">
                     @foreach ( $candidats as $candidat )
                          <!-- Candidat 1 -->
+                    @if($candidat->categorie->show==1)
                     <div class="col-lg-4 col-md-6">
                         <div class="card candidate-card">
                             <div class="card-header">
@@ -197,13 +198,40 @@
                                         @csrf
                                         <input value="{{ $candidat->id }}" name="candidat_id" type="hidden">
                                         <input value="{{ $candidat->categorie->id }}" name="categorie_id" type="hidden">
-                                        <button class="btn btn-vote">Voter / Vote / Votar <i class="fas fa-check ms-1"></i></button>
+
+                                        <button class="btn btn-vote">Voter / Vote / Votar </button>
 
                                     </form>
+                                <button class="btn btn-vote text-center" data-bs-toggle="modal" data-bs-target="#exampleModalform2{{$candidat->id}}"> <i class="fas fa-eye" ></i></button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalform2{{$candidat->id}}" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+
+                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                            <p>{!! $candidat->resume !!}</p>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                    @endif
                     @endforeach
 
 

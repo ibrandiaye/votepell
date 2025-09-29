@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     use HasFactory;
-         protected $fillable = ['nom', 'badge_color'];
+         protected $fillable = ['nom', 'badge_color','show'];
 
     public function candidates()
     {

@@ -27,4 +27,5 @@ class CandidatRepository extends RessourceRepository{
     }
 
 
+
 }

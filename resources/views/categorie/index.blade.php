@@ -69,6 +69,8 @@
                             <td>
 
                                 <a href="{{ route('categorie.edit', $categorie->id) }}" role="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+
+                                <a href="{{ route('updateShow', $categorie->id) }}" role="button" class="btn btn-warning"><i class="fas fa-eye"></i></a>
                                 <form method="POST"
                                     action="{{ route('categorie.destroy', $categorie->id) }}"
                                     style="display:inline;"

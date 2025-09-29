@@ -18,4 +18,8 @@ class CategorieRepository extends RessourceRepository{
     {
         return DB::table("categories")->get();
     }
+    public function updateShow($id)
+    {
+        return DB::table("categories")->where("id", $id)->update(["show" => 1 ]);
+    }
 }
