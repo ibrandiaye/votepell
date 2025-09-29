@@ -46,3 +46,5 @@ Route::get('/candidat/categorie/{id}', [HomeController::class,'candidatByCategor
 
 
 Route::get('/update/show/{id}', [CategorieController::class,'updateShow'])->name("updateShow");
+
+Route::get('/voter', [HomeController::class,'allCandidat']);
