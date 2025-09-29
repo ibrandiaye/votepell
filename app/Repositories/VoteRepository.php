@@ -26,6 +26,13 @@ class VoteRepository extends RessourceRepository{
     {
         return DB::table("votes")->count();
     }
+    public function nbVoteBcategorie($categorie_id)
+    {
+        return DB::table("votes")
+         ->join("candidats","votes.candidat_id","=","candidats.id")
+         ->where("candidats.categorie_id", $categorie_id)
+        ->count();
+    }
     public function getWithRelations()
     {
         return DB::table("votes")

@@ -48,7 +48,8 @@ class HomeController extends Controller
         //dd($candidats);
         $categories = $this->categorieRepository->getAll();
         $categorie_id = null;
-        return view('vote', compact("candidats","categories","categorie_id"));
+         $nbVotes = $this->voteRepository->nbVote();
+        return view('vote', compact("candidats","categories","categorie_id","nbVotes"));
     }
 
     public function voter(Request $request)
@@ -80,13 +81,18 @@ class HomeController extends Controller
         if($request->categorie_id!="all")
         {
             $candidats = $this->candidatRepository->getByCategorie($request->categorie_id);
+            $nbVotes = $this->voteRepository->nbVoteBcategorie($request->categorie_id);
+
         }
         else{
             $candidats = $this->candidatRepository->getAll();
+            $nbVotes = $this->voteRepository->nbVote();
+
         }
 
+
         $categories = $this->categorieRepository->getAll();
-        return view('vote', compact("candidats","categories","categorie_id"));
+        return view('vote', compact("candidats","categories","categorie_id","nbVotes"));
     }
 
     public function rtsByCategorie(Request $request)
@@ -115,6 +121,7 @@ class HomeController extends Controller
 
 
         $categories = $this->categorieRepository->getAll();
-        return view('vote', compact("candidats","categories","categorie_id"));
+        $nbVotes = $this->voteRepository->nbVoteBcategorie($id);
+        return view('vote', compact("candidats","categories","categorie_id","nbVotes"));
     }
 }

@@ -126,15 +126,7 @@
                     <div class="card-body text-center">
                         <h5><i class="fas fa-chart-bar me-2"></i>Statistiques</h5>
                         <p class="vote-count">Total votes:
-                            @php
-                                $total = 0;
-                                 foreach ( $candidats as $candidat )
-                                 {
-                                    $total += $candidat->votes;
-
-                                 }
-                                 echo $total;
-                            @endphp
+                          {{ $nbVotes}}
                         </p>
                         {{-- <p>Temps restant: 20j 5h 30m</p> --}}
                     </div>
