@@ -463,5 +463,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.expandable-card');
+            const overlay = document.querySelector('.overlay');
+            const closeBtn = document.querySelector('.close-btn');
+            const expandedContent = document.querySelector('.expanded-content');
+
+            card.addEventListener('click', function(e) {
+                // Ne pas agrandir si on clique sur le bouton de fermeture ou un lien
+                if (e.target.classList.contains('close-btn') || e.target.tagName === 'A') {
+                    return;
+                }
+
+                card.classList.add('expanded');
+                overlay.style.display = 'block';
+                expandedContent.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeBtn.addEventListener('click', function() {
+                card.classList.remove('expanded');
+                overlay.style.display = 'none';
+                expandedContent.style.display = 'none';
+                document.body.style.overflow = 'auto';
+
+                // Faire défiler jusqu'à la position originale de la carte
+                card.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
 </script>
 @endsection
