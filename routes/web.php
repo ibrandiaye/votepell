@@ -30,7 +30,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class,'allCandidat'])->name("vote");
 Route::post('/voter', [HomeController::class,'voter'])->name("store.vote");
 
-Route::post('/vote', [HomeController::class,'candidatByCategorie'])->name("candidatByCategorie");
+Route::post('/', [HomeController::class,'candidatByCategorie'])->name("candidatByCategorie");
 
 Route::get('/liste/vote', [VoteController::class,'index'])->name("liste.vote");
 
@@ -48,3 +48,5 @@ Route::get('/candidat/categorie/{id}', [HomeController::class,'candidatByCategor
 Route::get('/update/show/{id}', [CategorieController::class,'updateShow'])->name("updateShow");
 
 Route::get('/voter', [HomeController::class,'allCandidat']);
+
+Route::get('/vote', [HomeController::class,'allCandidat'])->name("vote");
