@@ -54,15 +54,15 @@ class HomeController extends Controller
 
     public function voter(Request $request)
     {
-        $vote = $this->voteRepository->verifVote($request->candidat_id,$request->categorie_id,$request->ip());
+        //$vote = $this->voteRepository->verifVote($request->candidat_id,$request->categorie_id,$request->ip());
 
-        if(!empty($vote))
+       /* if(!empty($vote))
         {
             return redirect()->back()->withErrors(["error"=>"Vous avez déjà vote pour cette categorie"]);
 
         }
         else
-        {
+        {*/
 
             $request->merge(["ip_adresse"=>$request->ip()]);
             $this->voteRepository->store($request->all());
@@ -71,7 +71,7 @@ class HomeController extends Controller
             $this->candidatRepository->updateVote($request->candidat_id,$candidat->votes);
             return redirect()->back()->with([ "success"=>"Vote vote est enregistrée avec succès"]);
 
-        }
+       // }
 
     }
 
