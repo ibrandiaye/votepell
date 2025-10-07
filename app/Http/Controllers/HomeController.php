@@ -54,7 +54,7 @@ class HomeController extends Controller
 
     public function voter(Request $request)
     {
-        //$vote = $this->voteRepository->verifVote($request->candidat_id,$request->categorie_id,$request->ip());
+        $vote = $this->voteRepository->verifVote($request->candidat_id,$request->categorie_id,$request->ip());
 
         if(!empty($vote))
         {
