@@ -205,6 +205,9 @@
             </div>
         </div>
     </div> --}}
+    @php
+        $br = "<br>";
+    @endphp
 
 @endsection
 
@@ -342,6 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let coloR = [];
   let morischart = [];
 
+
   var dynamicColors = function() {
     var r = Math.floor(Math.random() * 255);
     var g = Math.floor(Math.random() * 255);
@@ -352,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
   @foreach ($rts as $rt)
     // IMPORTANT : échappe les quotes possibles dans les noms
     donne.push({{ $rt->votes }});
-    labelsArr.push("{!!  $rt->nom !!}");
+    labelsArr.push("{!!  $rt->nom !!}  :   ({{ $rt->votes }} voix)");
     morischart.push({a: {{ $rt->votes }}, b: "{!! $rt->nom !!} ({{ $rt->votes }} voix)"});
     coloR.push(dynamicColors());
   @endforeach
@@ -409,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
         x: {
           ticks: {
             font: {
-                size: 14  // taille du texte labels axe X
+                size: 18  // taille du texte labels axe X
               },
             autoSkip: false,
             maxRotation: 45,
