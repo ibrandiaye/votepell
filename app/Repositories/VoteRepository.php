@@ -74,4 +74,15 @@ class VoteRepository extends RessourceRepository{
 
     }
 
+     public function rtsGroupByCategorie()
+    {
+        return DB::table("votes")
+        ->join("candidats","votes.candidat_id","=","candidats.id")
+        ->join("categories","candidats.categorie_id","=","categories.id")
+        ->select("categories.nom",DB::raw('count(votes.id) as votes'))
+         ->groupBy("categories.nom")
+        ->get();
+
+    }
+
 }

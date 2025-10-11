@@ -12,6 +12,7 @@ class VoteController extends Controller
 
     public function __construct(VoteRepository $voteRepository)
     {
+        $this->middleware('auth');
         $this->voteRepository = $voteRepository;
     }
     /**
@@ -104,5 +105,11 @@ class VoteController extends Controller
     {
         $this->voteRepository->destroy($id);
         return redirect('vote');
+    }
+
+    public function rtsGroupByCategorie()
+    {
+        $rtsGroupByCategories = $this->voteRepository->rtsGroupByCategorie();
+        return view("vote.rts",compact("rtsGroupByCategories"));
     }
 }

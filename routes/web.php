@@ -50,3 +50,4 @@ Route::get('/update/show/{id}', [CategorieController::class,'updateShow'])->name
 Route::get('/voter', [HomeController::class,'allCandidat']);
 
 Route::get('/vote', [HomeController::class,'allCandidat'])->name("vote");
+Route::get('/rts/categorie', [VoteController::class,'rtsGroupByCategorie'])->name("rts.categorie");
