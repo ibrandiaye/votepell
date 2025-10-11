@@ -175,7 +175,7 @@
 
             <div class="col-md-9">
                 <div class="row" id="candidatesList">
-                    @foreach ( $candidats as $candidat )
+                  {{--   @foreach ( $candidats as $candidat )
                          <!-- Candidat 1 -->
                     @if($candidat->categorie->show==1)
                     <div class="col-lg-4 col-md-6">
@@ -190,7 +190,7 @@
 
                                 <p class="card-text">{{ $candidat->description }}.</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    {{-- <span class="text-muted">Votes: {{ $candidat->votes }}</span> --}}
+                                    {{-- <span class="text-muted">Votes: {{ $candidat->votes }}</span>
                                     <form action="{{ route('store.vote') }}" method="POST">
                                         @csrf
                                         <input value="{{ $candidat->id }}" name="candidat_id" type="hidden">
@@ -230,7 +230,7 @@
                                 </div>
                     @endif
                     @endforeach
-
+ --}}
 
 
                 </div>
